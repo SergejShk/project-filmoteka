@@ -1,0 +1,32 @@
+
+ <div class="modal__sign">
+    <div class="modal-box">
+      <div> <img src='https://image.tmdb.org/t/p/w500{{this.poster_path}}' alt="post" min-width="240px"
+          min-height="357px" /></div>
+      <div class="modal-info">
+        <h2 class="modal__title">{{this.title}}</h2>
+          <ul class="modal-list">
+            <li class="modal-list__items">
+              <p>Vote/Votes<span class="reat vote">{{vote_average}}</span>/<span class="reat">{{this.vote_count}}</span></p>
+            </li>
+            <li class="modal-list__items">
+              <p>Popularity <span class="popularity">{{this.popularity}}</span></p>
+            </li>
+            <li class="modal-list__items">
+              <p>Original Title <span class="original-title">{{this.original_title}}</span></p>
+            </li>
+            <li class="modal-list__items">
+              <p>Genre<span class="genre">Family</span></p>
+            </li>
+          </ul>
+        <h3 class="modal__about">About</h3>
+        <p class="modal__text">{{this.overview}}</p>
+        <div class="btn">
+          <button type="button" class="button">add to Watched</button>
+          <button type="button" class="button queue">add to queue</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
