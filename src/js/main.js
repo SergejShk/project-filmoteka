@@ -1,7 +1,6 @@
 import ApiService from './api-service';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import articlesTpl from '../templates/articlesTpl.hbs';
-
 const apiService = new ApiService();
 
 const galleryListEl = document.querySelector('.gallery__grid');
@@ -9,6 +8,7 @@ const paginationBtnContainerEl = document.querySelector(
   '.pagination__container'
 );
 
+console.log(galleryListEl);
 const handleQueryApi = async () => {
   try {
     Loading.circle('Loading...');
