@@ -1,25 +1,20 @@
-.header {
+header {
   position: relative;
-
+  width: 100%;
+  max-width: 1280px;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto;
   padding-top: 40px;
   padding-bottom: 92px;
-  height: 230px;
 
-  @include mq(mob-only) {
-    padding-top: 40px;
-    padding-bottom: 44px;
-  }
-
-  @include mq(desk) {
+  @include mq(tab) {
+    margin-bottom: 60px;
+    padding-bottom: 80px;
   }
 }
 
-.header-container {
-  width: 100%;
-  max-width: 1280px;
-  padding: 40px 0px 92px 0px;
-  margin-right: auto;
-  margin-left: auto;
+.header-bg-home {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,39 +37,38 @@
     background-image: url(../images/header-home/desk.jpg);
 
     @include mq(retina) {
-      background-image: url(../images/header-home/desk.jpg);
+      background-image: url(../images/header-home/desk2x.jpg);
     }
   }
 }
 
-.header-container_library {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/header-library/mob.jpg);
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+// .header-bg-libraly {
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//     url(../images/header-library/mob.jpg);
 
-  @include mq(retina) {
-    background-image: url(../images/header-library/mob2x.jpg);
-  }
+//   @include mq(retina) {
+//     background-image: url(../images/header-library/mob2x.jpg);
+//   }
 
-  @include mq(tab) {
-    background-image: url(../images/header-library/tab.jpg);
+//   @include mq(tab) {
+//     background-image: url(../images/header-libraly/tab.jpg);
 
-    @include mq(retina) {
-      background-image: url(../images/header-library/tab2x.jpg);
-    }
-  }
+//     @include mq(retina) {
+//       background-image: url(../images/header-libraly/tab2x.jpg);
+//     }
+//   }
 
-  @include mq(desk) {
-    background-image: url(../images/header-library/desk.jpg);
+//   @include mq(desk) {
+//     background-image: url(../images/header-libraly/desk.jpg);
 
-    @include mq(retina) {
-      background-image: url(../images/header-library/desk.jpg);
-    }
-  }
-}
+//     @include mq(retina) {
+//       background-image: url(../images/header-libraly/desk2x.jpg);
+//     }
+//   }
+// }
 
 .logo {
   width: 24px;
@@ -85,6 +79,7 @@
 
 .logo__text {
   margin-left: 10px;
+
   font-size: 30px;
   line-height: 1.16px;
 
@@ -95,83 +90,97 @@
   }
 }
 
-.form__icon {
-  width: 12px;
-  height: 12px;
-}
-
 .navi {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 37px;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 46px;
+
+  @include mq(tab) {
+    margin-bottom: 43px;
+  }
 }
 
 .navi__list {
   display: flex;
-}
 
-.navi__list :not(:first-child) {
-  margin-left: 40px;
+  :not(:last-child) {
+    margin-right: 40px;
+  }
 }
 
 .navi__link {
   position: relative;
-  font-size: var(--main-font-size);
-  line-height: 1.16px;
-  height: 14px;
   display: flex;
   align-items: center;
-  text-align: center;
+
+  font-size: var(--main-font-size);
+  line-height: 1.16px;
   text-transform: uppercase;
+
   color: var(--main-white-color);
   transition: var(--transition);
+
+  &:hover,
+  &:focus {
+    color: var(--text-accent-color);
+  }
 }
 
 .current::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -3px;
+  bottom: -9px;
+
   width: 100%;
   height: 3px;
+
   background-color: var(--sec-red-color);
-  transition: var(--transition);
 }
 
 .search-container {
-  max-width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  max-width: 100%;
 }
 
 .form__input {
   display: flex;
   align-items: center;
-  background-color: transparent;
-  border: none;
   width: 280px;
-  height: 24px;
-  outline: none;
-  font-size: var(--search-and-footer-mobile-text-size);
-  line-height: 1.14;
-  padding-bottom: 4px;
-  padding-left: 4px;
+  height: 20px;
+
+  padding-bottom: 6px;
   padding-right: 20px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+
+  border: none;
+  outline: none;
   color: var(--main-white-color);
+  background-color: transparent;
   border-bottom: 0.5px solid var(--main-white-color);
 
   @include mq(tab) {
     width: 336px;
   }
+
+  @include mq(desk) {
+    width: 396px;
+  }
 }
 
 .form__input::placeholder {
-  font-size: 14px;
-  line-height: 1.17;
   display: flex;
   align-items: center;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17;
+
   color: var(--main-white-color);
 }
 
@@ -179,30 +188,41 @@
   position: relative;
 }
 
+.form__icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
 .form__btn {
   position: absolute;
   top: 0;
-  right: 0;
-  padding: 1px 5px;
+  right: -1px;
+
   width: 20px;
   height: 20px;
-  background-color: transparent;
-  border-radius: 50%;
+  padding-bottom: 6px;
+
   border: none;
   outline: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .form__warning {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  margin-top: 20px;
+
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+
   color: var(--sec-red-color);
-  position: absolute;
-  margin-top: 22px;
-  width: 280px;
 
   @include mq(tab) {
     width: 390px;
