@@ -228,3 +228,59 @@ header {
     width: 390px;
   }
 }
+
+.lib__btns {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.lib__btn {
+  width: 130px;
+  height: 44px;
+
+  font-size: var(--main-font-size);
+  line-height: var(--main-line-height);
+  text-transform: uppercase;
+  color: var(--main-white-color);
+
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--main-white-color);
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  transition: var(--transition);
+
+  &:focus,
+  &:hover {
+    background-color: var(--btn-accent-color);
+    border-color: var(--btn-accent-color);
+  }
+
+  @include mq(tab) {
+    width: 152px;
+  }
+
+  @include mq(desk) {
+    width: 148px;
+    height: 42px;
+  }
+}
+
+.lib__btn:not(:last-child) {
+  margin-right: 20px;
+
+  @include mq(tab) {
+    margin-right: 32px;
+  }
+
+  @include mq(desk) {
+    margin-right: 16px;
+  }
+}
+
+.active-btn {
+  background-color: var(--btn-accent-color);
+  border-color: var(--btn-accent-color);
+}
