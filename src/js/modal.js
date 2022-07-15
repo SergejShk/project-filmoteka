@@ -18,19 +18,14 @@ function toggleModal() {
 
 const apiService = new ApiService();
 
-let modalElId = [5];
+let modalElId = [0];
 
 export async function modals() {
-  try {
-    const data = await apiService.getTrendingArticles();
+  const data = await apiService.getTrendingArticles();
 
-    addModalInfo(data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-function addModalInfo(articles) {
-  const modalElements = articles.map(element => {
+  const test = data.results;
+
+  const modalElements = test.map(element => {
     return element;
   });
 
