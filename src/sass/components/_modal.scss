@@ -1,7 +1,23 @@
 .modal-box {
+<<<<<<< Updated upstream
     @media screen and (min-width: 767.98px) {
       display: flex;
     }
+=======
+  @media screen and (min-width: 767.98px) {
+    display: flex;
+  }
+}
+
+.modal-info {
+  @media screen and (min-width: 767.98px) {
+    width: 292px;
+  }
+}
+.modal-info {
+  @media screen and (min-width: 1199.98px) {
+    width: 391px;
+>>>>>>> Stashed changes
   }
   
   .modal-info {
