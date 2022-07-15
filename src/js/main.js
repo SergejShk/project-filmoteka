@@ -1,7 +1,7 @@
 import ApiService from './api-service';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import articlesTpl from '../templates/articlesTpl.hbs';
-
+import { modals } from './modal';
 const apiService = new ApiService();
 
 const galleryListEl = document.querySelector('.gallery__grid');
@@ -42,6 +42,11 @@ const paginationBtnHandle = async e => {
   handleQueryApi();
 };
 
-apiService.getGenres()
+apiService.getGenres();
+
+function appendArticlesMarkup(articles) {
+  galleryListEl.innerHTML = articlesTpl(articles);
+}
+handleQueryApi();
 
 paginationBtnContainerEl.addEventListener('click', paginationBtnHandle);

@@ -17,6 +17,12 @@ class ApiService {
    }
    
   async getTrendingArticles() {
+    const URL = 'https://api.themoviedb.org/3/';
+    const KEY = '82c59d753050746a09d77670604a0453';
+    
+
+
+
     const response = await axios.get(
       `${URL}/trending/movie/week?api_key=${KEY}&page=${this.page}`
     );
