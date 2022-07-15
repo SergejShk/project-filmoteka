@@ -9,8 +9,8 @@ body {
   line-height: var(--main-line-height);
   letter-spacing: 0.05em;
 
-  color: var(--main-white-color);
-  background-color: va(--main-white-bg-color);
+
+  background-color: var(--main-white-color);
   overflow-x: hidden;
 
   @include mq(desk) {
