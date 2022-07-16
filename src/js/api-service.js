@@ -9,6 +9,15 @@ class ApiService {
     this.page = 1;
   }
 
+  async getArticlesBySearch() {
+    axios.defaults.params = {
+      api_key: KEY,
+      query: this.query,
+      page: this.page,
+    };
+    return await axios(`${URL}search/movie`).then(response => response.data);
+  }
+
   async getGenres() {
     const response = await axios.get(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=en-US`
@@ -18,9 +27,7 @@ class ApiService {
   }
 
   async getTrendingArticles() {
-    const response = await axios.get(
-      `${URL}/trending/movie/week?api_key=${KEY}&page=${this.page}`
-    );
+    const response = await axios.get(`${URL}/trending/movie/week?api_key=${KEY}&page=${this.page}`);
 
     response.data.results.forEach(
       element => (element.release_date = element.release_date.slice(0, 4))
@@ -29,9 +36,7 @@ class ApiService {
     return response.data;
   }
   async getFullInfoById(id) {
-    const response = await axios.get(
-      `${URL}movie/${id}?api_key=${KEY}&language=en-US`
-    );
+    const response = await axios.get(`${URL}movie/${id}?api_key=${KEY}&language=en-US`);
     console.log(response);
     return response.data;
   }
