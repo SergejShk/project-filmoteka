@@ -149,6 +149,7 @@ const onCloseModalKeyboard = e => {
   if (!isEscKey) return;
   refs.modal.classList.add('is-hidden');
   window.removeEventListener('keydown', onCloseModalKeyboard);
+  document.body.classList.toggle('no-scroll');
 };
 
 refs.galleryList.addEventListener('click', onOpenModal);
