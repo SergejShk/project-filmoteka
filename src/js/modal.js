@@ -79,9 +79,15 @@ const onOpenModal = async e => {
     e.preventDefault();
     watchTrailer();
   });
+
+  refs.modal.classList.remove('is-hidden');
+  localStorageHandle.targetDataFilm = fullInfo;
+  refs.modalContainer.innerHTML = modalInfoHbs(normalizedInfo);
+  const normalizedInfo = normalizeDataApi.updateDataFilmsLibrary(fullInfo);
   refs.modal.classList.remove('is-hidden');
 
-  localStorageHandle.targetDataFilm = fullInfo;
+  localStorageHandle.targetDataFilm = normalizedInfo;
+
   addEventListeners();
 };
 
