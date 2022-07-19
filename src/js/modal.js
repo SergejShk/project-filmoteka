@@ -113,6 +113,7 @@ const onOpenModal = async e => {
   const normalizedInfo = normalizeDataApi.updateDataFilmsLibrary(fullInfo);
   refs.modalContainer.innerHTML = modalInfoHbs(normalizedInfo);
   refs.modal.classList.remove('is-hidden');
+  document.body.classList.toggle('no-scroll');
   localStorageHandle.targetDataFilm = normalizedInfo;
 
   if (localStorageHandle.checkExistFilmsInWatchedLocalStorage(normalizedInfo)) {
@@ -139,6 +140,7 @@ const onOpenModal = async e => {
 
 const onCloseModal = e => {
   refs.modal.classList.add('is-hidden');
+  document.body.classList.toggle('no-scroll');
   window.removeEventListener('keydown', onCloseModalKeyboard);
 };
 
