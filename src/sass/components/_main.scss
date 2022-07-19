@@ -1,66 +1,79 @@
-
-
 .gallery__grid {
-    display: grid;
-    row-gap: 20px;
-    grid-template-columns: repeat(1, 280px);
-    justify-content: center;
-    margin-bottom: 60px;
-    
-    @include mq(tab) {
-        display: grid;
-        gap: 32px;
-        grid-template-columns: repeat(2, 336px);
-      }
+  display: grid;
+  row-gap: 20px;
+  grid-template-columns: repeat(1, 280px);
+  justify-content: center;
+  margin-bottom: 60px;
 
-      @include mq(desk) {
-        column-gap: 16px;
-        row-gap: 32px;
-        grid-template-columns: repeat(3, 395px);
-    }
+  @include mq(tab) {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 336px);
+  }
+
+  @include mq(desk) {
+    column-gap: 16px;
+    row-gap: 32px;
+    grid-template-columns: repeat(3, 395px);
+  }
 }
 
-  .gallery__img{
-    height: 402px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+.gallery__img {
+  height: 402px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 
-    @include mq(tab) {
-        margin-bottom: 8px;
-        height: 455px;
-      }
-
-    @include mq(desk) {
-        margin-bottom: 12px;
-        height: 574px;
-    }
-
+  @include mq(tab) {
+    margin-bottom: 8px;
+    height: 455px;
   }
 
-  .gallery__film-name {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    text-transform: uppercase;
-
-    color: var(--main-text-color);
+  @include mq(desk) {
+    margin-bottom: 12px;
+    height: 574px;
   }
+}
 
-  .gallery__film-text-about {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    color: var(--text-accent-color);
-  }
+.gallery__film-name {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  color: var(--main-text-color);
+}
+
+body.dark__theme .gallery__film-name {
+  color: var(--main-white-color);
+}
+
+.gallery__film-text-about {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--text-accent-color);
+}
 
 .pagination__container {
   display: flex;
   justify-content: center;
 }
 
-  .pagination__btn {
-    padding: 25px;
-    cursor: pointer;
-    background-color: rgb(228, 57, 51);
-    border-radius: 12px;
+.pagination__btn {
+  padding: 25px;
+  cursor: pointer;
+  background-color: rgb(228, 57, 51);
+  border-radius: 12px;
+}
+
+.gallery__item {
+  transition-property: transform;
+  animation-timing-function: linear;
+
+  transition-duration: 500ms;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
   }
+}

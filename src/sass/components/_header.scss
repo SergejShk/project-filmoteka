@@ -2,7 +2,7 @@
   position: relative;
   height: 230px;
   width: 100%;
-  max-width: 1280px;
+  // max-width: 1280px;
   margin-right: auto;
   margin-bottom: 20px;
   margin-left: auto;
@@ -24,7 +24,7 @@
   position: relative;
   height: 230px;
   width: 100%;
-  max-width: 1280px;
+  // max-width: 1280px;
   margin-right: auto;
   margin-bottom: 20px;
   margin-left: auto;
@@ -73,6 +73,11 @@
         url(../images/header-home/desk2x.jpg);
     }
   }
+}
+
+body.dark__theme .header-bg-home {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(../images/header-home/darkmode.jpg);
 }
 
 .header-bg-library {

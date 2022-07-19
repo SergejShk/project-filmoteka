@@ -9,6 +9,7 @@ export const refs = {
   watchedBtn: document.querySelector('.js-btn_watched'),
   queueBtn: document.querySelector('.js-btn_queue'),
   logo: document.querySelector('.js-logo'),
+
   headerNav: document.querySelector('.js-navi'),
   errWarning: document.querySelector('.form__warning'),
 

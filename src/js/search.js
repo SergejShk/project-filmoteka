@@ -2,11 +2,11 @@ import ApiService from './api-service';
 import { refs } from './refs';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import NormalizeDataApi from './normalize-data-api';
-import reHandleQueryTrendingApifs from './handle-query-trending-api';
+import HandleQueryTrendingApi from './handle-query-trending-api';
 import RenderGallery from './render-gallery';
 
 const apiService = new ApiService();
-const renderTrending = new reHandleQueryTrendingApifs();
+const renderTrending = new HandleQueryTrendingApi();
 const normalizeDataApi = new NormalizeDataApi();
 const renderGallery = new RenderGallery();
 
@@ -30,10 +30,11 @@ async function onSearch(e) {
     if (data.results.length === 0) {
       refs.errWarning.classList.remove('visually-hidden');
       renderTrending.handleQueryTrendingDataApi();
+      refs.formInput.value = '';
       return;
     }
     const genres = await apiService.getGenres();
-    const normalizedData = await normalizeDataApi.updateDataGenre(data, genres);
+    const normalizedData = await normalizeDataApi.updateDataTranding(data, genres);
     renderGallery.renderGalleryMarkup(normalizedData);
     refs.formInput.value = '';
     Loading.remove();

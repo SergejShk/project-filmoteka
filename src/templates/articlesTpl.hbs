@@ -1,8 +1,13 @@
- 
  {{#each this}}
  <li class="gallery__item" data-id="{{id}}">
         <a class="gallery__link" href="#">
-          <img class="gallery__img"  src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="" width="395" height="574">
+          <img 
+          {{#if poster_path}}
+          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+          {{else}}
+          src='https://raw.githubusercontent.com/vadymfrlv/storage/b4e0abb7f45980d92f3ee2da26a5960181a17f8f/filmoteka/posterholder.jpg'
+          {{/if}}
+          class="gallery__img" alt="poster" width="395" height="574">
           <div class="gallery__thumb">
             <h2 class="gallery__film-name">{{title}}</h2>
             <p class="gallery__film-text-about"> {{genre_ids}} | {{release_date}}</p>
@@ -10,4 +15,3 @@
         </a>
       </li>
 {{/each}}
-

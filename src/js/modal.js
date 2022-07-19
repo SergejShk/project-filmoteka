@@ -1,19 +1,22 @@
 import ApiService from './api-service';
 import modalInfoHbs from '../templates/modalInfo.hbs';
 import LocalStorageHandle from './localeStorage';
+import articlesTpl from '../templates/articlesTpl.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import NormalizeDataApi from './normalize-data-api';
+
 const apiService = new ApiService();
 const localStorageHandle = new LocalStorageHandle();
+const normalizeDataApi = new NormalizeDataApi();
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
   galleryList: document.querySelector('.gallery__grid'),
   modalContainer: document.querySelector('.modal__container'),
-  btnAddToWatched: document.querySelector('.js-addToWatched'),
-  btnAddToQueue: document.querySelector('.js-addToQueue'),
+  btnAddToWatched: document.querySelector('.js-add-to-watched'),
+  btnAddToQueue: document.querySelector('.js-add-to-queue'),
 };
 
 export function watchTrailer() {
@@ -49,13 +52,50 @@ function iframeRender(key) {
   instance.show();
 }
 
+const handleBtnWatched = btn => {
+  if (!btn.classList.contains('js-film-watched')) {
+    localStorageHandle.setToWatched();
+    btn.classList.add('js-film-watched');
+    btn.textContent = 'REMOVE FROM WATCHED';
+    return;
+  }
+  localStorageHandle.removeWatchedFilm();
+  btn.classList.remove('js-film-watched');
+  btn.textContent = 'ADD TO WATCHED';
+
+  const watchedFilmsData = localStorageHandle.getLocalStorageWatched();
+  const normalizedData = watchedFilmsData.map(el => {
+    return normalizeDataApi.updateDataFilmsLibrary(el);
+  });
+
+  refs.galleryList.innerHTML = articlesTpl(normalizedData);
+};
+const handleBtnQueue = btn => {
+  if (!btn.classList.contains('js-film-queue')) {
+    localStorageHandle.setToQueue();
+    btn.classList.add('js-film-queue');
+    btn.textContent = 'REMOVE FROM QUEUE';
+    return;
+  }
+  localStorageHandle.removeQueueFilm();
+  btn.classList.remove('js-film-queue');
+  btn.textContent = 'ADD TO QUEUE';
+
+  const queueFilmsData = localStorageHandle.getLocalStorageQueue();
+  const normalizedData = queueFilmsData.map(el => {
+    return normalizeDataApi.updateDataFilmsLibrary(el);
+  });
+
+  refs.galleryList.innerHTML = articlesTpl(normalizedData);
+};
+
 const modalInfoEventHandle = e => {
   if (e.target.nodeName !== 'BUTTON') return;
   if (e.target.classList.contains('js-add-to-watched')) {
-    localStorageHandle.setToWatched();
+    handleBtnWatched(e.target);
   }
   if (e.target.classList.contains('js-add-to-queue')) {
-    localStorageHandle.setToQueue();
+    handleBtnQueue(e.target);
   }
 };
 
@@ -70,9 +110,8 @@ const addEventListeners = () => {
 const onOpenModal = async e => {
   e.preventDefault();
   const idTargetItem = e.target.closest('li').dataset.id;
-
   const fullInfo = await apiService.getFullInfoById(idTargetItem);
-  console.log(fullInfo);
+
   refs.modalContainer.innerHTML = modalInfoHbs(fullInfo);
   const youtubeBtn = document.querySelector('.film__trailer__btn');
   youtubeBtn.addEventListener('click', e => {
@@ -80,12 +119,19 @@ const onOpenModal = async e => {
     watchTrailer();
   });
 
+
   refs.modal.classList.remove('is-hidden');
   localStorageHandle.targetDataFilm = fullInfo;
   refs.modalContainer.innerHTML = modalInfoHbs(normalizedInfo);
   const normalizedInfo = normalizeDataApi.updateDataFilmsLibrary(fullInfo);
   refs.modal.classList.remove('is-hidden');
 
+  localStorageHandle.targetDataFilm = normalizedInfo;
+
+
+  const normalizedInfo = normalizeDataApi.updateDataFilmsLibrary(fullInfo);
+  refs.modalContainer.innerHTML = modalInfoHbs(normalizedInfo);
+  refs.modal.classList.remove('is-hidden');
   localStorageHandle.targetDataFilm = normalizedInfo;
 
   addEventListeners();

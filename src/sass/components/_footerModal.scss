@@ -6,7 +6,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -16,48 +16,57 @@
   position: fixed;
   bottom: 0;
   left: 0;
-
+  padding: 30px;
   width: 100%;
   animation-duration: 3s;
-  animation-name: slidein;
+
   animation-iteration-count: unset;
   background-image: linear-gradient(
     45deg,
-    hsl(240deg 100% 20%) 0%,
-    hsl(279deg 100% 21%) 18%,
-    hsl(301deg 100% 21%) 27%,
-    hsl(317deg 100% 28%) 34%,
-    hsl(326deg 100% 34%) 40%,
-    hsl(333deg 100% 39%) 45%,
-    hsl(339deg 100% 44%) 50%,
-    hsl(354deg 88% 57%) 54%,
-    hsl(8deg 100% 61%) 59%,
-    hsl(21deg 100% 58%) 64%,
-    hsl(32deg 100% 53%) 70%,
-    hsl(41deg 100% 50%) 77%,
-    hsl(48deg 100% 50%) 86%,
-    hsl(55deg 100% 50%) 100%
+    hsl(0deg 100% 15%) 0%,
+    hsl(0deg 67% 15%) 9%,
+    hsl(0deg 43% 13%) 19%,
+    hsl(0deg 25% 10%) 29%,
+    hsl(0deg 11% 6%) 39%,
+    hsl(0deg 0% 0%) 49%,
+    hsl(0deg 11% 7%) 59%,
+    hsl(0deg 25% 12%) 69%,
+    hsl(0deg 43% 16%) 80%,
+    hsl(0deg 67% 18%) 90%,
+    hsl(0deg 100% 19%) 100%
   );
 }
-
+.modal-content.one {
+  animation-name: slidein;
+}
+.modal-content.out {
+  animation-name: slideOff;
+}
 /* The Close Button */
 .close {
-  color: rgb(0, 0, 0);
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
   float: right;
   font-size: 28px;
   font-weight: bold;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: transform 0.5s ease, border-radius 0.3s ease, background 0.4s ease;
 }
 
 .close:hover,
 .close:focus {
-  color: rgb(99, 5, 139);
+  color: rgb(182, 155, 193);
   text-decoration: none;
   cursor: pointer;
+  transform: rotate(0.5turn);
 }
 
 .modal-header {
-  // padding: 2px 16px;
-  // background-color: #5cb85c;
+  margin-bottom: 20px;
+
   color: white;
 }
 
@@ -68,7 +77,7 @@
   font-size: 30px;
   line-height: 1.16;
   text-align: center;
-  color: #000000;
+  color: #fff;
 }
 
 .modal-body {
@@ -78,7 +87,7 @@
 }
 .modal-card {
   animation-duration: 5s;
-  // animation-name: slidein;
+
   text-align: center;
 }
 .modal-card img {
@@ -102,6 +111,9 @@
 .modal-card.gallery {
   $sl-overlay-background: red;
 }
+.sl-wrapper {
+  background-color: #5cb85c6a;
+}
 .modal-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
@@ -119,5 +131,25 @@
   to {
     bottom: 300px;
     width: 100%;
+  }
+  // 0% {
+  //   transform: scaleY(0.005) scaleX(0);
+  // }
+  // 50% {
+  //   transform: scaleY(0.005) scaleX(1);
+  // }
+  // 100% {
+  //   transform: scaleY(1) scaleX(1);
+  // }
+}
+@keyframes slideOff {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.005) scaleX(0);
   }
 }

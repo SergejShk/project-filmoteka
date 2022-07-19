@@ -52,6 +52,13 @@ async function fetchPerPage(page) {
   galleryListEl.innerHTML = articlesTpl(normalizedData);
   // console.log(response);
   if (page === 1) pagination.reset(response.total_results);
+
+window.scroll({
+  top: 0,
+  left: 0,
+  behavior: 'smooth'
+});
+
 }
 
 document.onload = fetchPerPage(1);

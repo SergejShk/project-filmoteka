@@ -9,10 +9,8 @@ class LocalStorageHandle {
   }
 
   setToWatched() {
-    // if (this.watchedDataFilm.includes(this.targetDataFilm)) {
-    //   return;
-    // }
-    this.getLocalStorageWatched();
+    if (this.checkExistFilmsInWatchedLocalStorage(this.targetDataFilm)) return;
+
     this.watchedDataFilm.push(this.targetDataFilm);
     localStorage.setItem(
       WATCED_FILMS_KEY,
@@ -27,7 +25,8 @@ class LocalStorageHandle {
   }
 
   setToQueue() {
-    this.getLocalStorageQueue();
+    if (this.checkExistFilmsInQueueLocalStorage(this.targetDataFilm)) return;
+
     this.queueDataFilms.push(this.targetDataFilm);
     localStorage.setItem(QUEUE_FILMS_KEY, JSON.stringify(this.queueDataFilms));
   }
@@ -36,6 +35,52 @@ class LocalStorageHandle {
     const parsedQueueFilmsData = JSON.parse(queueFilmsData) ?? [];
     this.queueDataFilms = parsedQueueFilmsData;
     return this.queueDataFilms;
+  }
+
+  checkExistFilmsInQueueLocalStorage(article) {
+    const AllQueueFilmsInLocalStorage = this.getLocalStorageQueue();
+    const idsFilmsQueueLocalStorage = AllQueueFilmsInLocalStorage.map(
+      film => film.id
+    );
+    if (!idsFilmsQueueLocalStorage.includes(article.id)) return false;
+    return true;
+  }
+  checkExistFilmsInWatchedLocalStorage(article) {
+    const AllWatchedFilmsInLocalStorage = this.getLocalStorageWatched();
+    const idsFilmsWatchedLocalStorage = AllWatchedFilmsInLocalStorage.map(
+      film => film.id
+    );
+    if (!idsFilmsWatchedLocalStorage.includes(article.id)) return false;
+    return true;
+  }
+
+  removeWatchedFilm() {
+    const checkExist = this.checkExistFilmsInWatchedLocalStorage(
+      this.targetDataFilm
+    );
+    if (checkExist) {
+      this.watchedDataFilm = this.watchedDataFilm.filter(
+        film => film.id !== this.targetDataFilm.id
+      );
+      localStorage.setItem(
+        WATCED_FILMS_KEY,
+        JSON.stringify(this.watchedDataFilm)
+      );
+    }
+  }
+  removeQueueFilm() {
+    const checkExist = this.checkExistFilmsInQueueLocalStorage(
+      this.targetDataFilm
+    );
+    if (checkExist) {
+      this.queueDataFilms = this.queueDataFilms.filter(
+        film => film.id !== this.targetDataFilm.id
+      );
+      localStorage.setItem(
+        QUEUE_FILMS_KEY,
+        JSON.stringify(this.queueDataFilms)
+      );
+    }
   }
 }
 
